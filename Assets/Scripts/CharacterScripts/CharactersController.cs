@@ -17,6 +17,7 @@ public class CharactersController : MonoBehaviour
         {
             _jumpInput = true;
         }
+        LaneChange();
     }
     private void FixedUpdate()
     {
@@ -61,6 +62,17 @@ public class CharactersController : MonoBehaviour
         if (!_isGrounded && _wasGrounded)
         {
             _animator.SetTrigger("Jump");
+        }
+    }
+    private void LaneChange()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            gameObject.transform.position += new Vector3(10f,0.07f,0);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            gameObject.transform.position += new Vector3(-10f, 0.07f, 0);
         }
     }
 }
