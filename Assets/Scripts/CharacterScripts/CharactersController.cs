@@ -35,6 +35,13 @@ public class CharactersController : MonoBehaviour
             _isGrounded = true;
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+        }
+    }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -68,11 +75,11 @@ public class CharactersController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            gameObject.transform.position += new Vector3(10f,0.07f,0);
+            gameObject.transform.position += new Vector3(-10f,0.07f,0);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            gameObject.transform.position += new Vector3(-10f, 0.07f, 0);
+            gameObject.transform.position += new Vector3(10f, 0.07f, 0);
         }
     }
 }

@@ -19,7 +19,7 @@ public class TileManager : MonoBehaviour
     void Update()
     {
         Debug.Log(_player.position.z + " and " + spawnedTiles[spawnedTiles.Count - 1].End.position.z);
-        if(_player.position.z > spawnedTiles[spawnedTiles.Count - 1].End.position.z)
+        if(_player.position.z + 30f > spawnedTiles[spawnedTiles.Count - 1].End.position.z)
         {
             SpawnTile();
         }
@@ -27,7 +27,7 @@ public class TileManager : MonoBehaviour
     private void SpawnTile()
     {
         Tiles newTiles = Instantiate(tilePrefabs[Random.Range(0,tilePrefabs.Count)]);
-        newTiles.transform.position = spawnedTiles[spawnedTiles.Count-1].End.position- newTiles.Begin.localPosition;
+        newTiles.transform.position = spawnedTiles[spawnedTiles.Count-1].End.position - newTiles.Begin.position;
         spawnedTiles.Add(newTiles);
     }
 }
