@@ -18,7 +18,6 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_player.position.z + " and " + spawnedTiles[spawnedTiles.Count - 1].End.position.z);
         if(_player.position.z + 30f > spawnedTiles[spawnedTiles.Count - 1].End.position.z)
         {
             SpawnTile();

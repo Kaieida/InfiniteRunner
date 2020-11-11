@@ -8,27 +8,25 @@ public class CharactersController : MonoBehaviour
     [SerializeField] private float _jumpForce = 10;
     [SerializeField] private Animator _animator = null;
     [SerializeField] private Rigidbody _rigidBody = null;
-    private bool _isGrounded;
+    public bool _isGrounded;
     private bool _wasGrounded;
     private bool _jumpInput;
     void Update()
     {
-        if (!_jumpInput && Input.GetKey(KeyCode.Space))
+        if (!_jumpInput && Input.GetKeyDown("space"))
         {
             _jumpInput = true;
         }
-        LaneChange();
-    }
-    private void FixedUpdate()
-    {
         _animator.SetBool("Grounded", _isGrounded);
-        transform.position += transform.forward * _movementSpeed * Time.deltaTime;
+        //transform.position += transform.forward * _movementSpeed * Time.deltaTime; //REWORK
+        _rigidBody.AddForce(transform.forward * _movementSpeed * Time.deltaTime);
         _animator.SetFloat("MoveSpeed", _movementSpeed);
         JumpingAndLanding();
         _wasGrounded = _isGrounded;
         _jumpInput = false;
+        LaneChange();
     }
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
@@ -48,7 +46,7 @@ public class CharactersController : MonoBehaviour
         {
             _isGrounded = false;
         }
-    }
+    }*/
     private void JumpingAndLanding()
     {
         //bool jumpCooldownOver = (Time.time - jumpTimeStamp) >= minJumpInterval;
@@ -60,6 +58,7 @@ public class CharactersController : MonoBehaviour
         }*/
         if (_isGrounded && _jumpInput)
         {
+            Debug.Log("jumping");
             _rigidBody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
         if (!_wasGrounded && _isGrounded)
@@ -75,11 +74,15 @@ public class CharactersController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            gameObject.transform.position += new Vector3(-10f,0.07f,0);
+            //gameObject.transform.position += new Vector3(-10f,0,0);
+            //gameObject.transform.Translate(new Vector3(-10, 0, 0));
+            _rigidBody.MovePosition(gameObject.transform.position + new Vector3(-10, 0, 0));
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            gameObject.transform.position += new Vector3(10f, 0.07f, 0);
+            //gameObject.transform.position += new Vector3(10f, 0, 0);
+            // gameObject.transform.Translate(new Vector3(10, 0, 0));
+            _rigidBody.MovePosition(gameObject.transform.position + new Vector3(10, 0, 0));
         }
     }
 }
