@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tiles : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    public Transform Begin;
-    public Transform End;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    public void MainMenu()
+    {
+        Debug.Log("works fine");
+    }
     // Update is called once per frame
     void Update()
     {
-        Destroy(this.gameObject, 60);
+        
     }
 }

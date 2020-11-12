@@ -17,8 +17,8 @@ public class CharactersController : MonoBehaviour
         {
             _jumpInput = true;
         }
+        _movementSpeed += Time.deltaTime*10;
         _animator.SetBool("Grounded", _isGrounded);
-        //transform.position += transform.forward * _movementSpeed * Time.deltaTime; //REWORK
         _rigidBody.AddForce(transform.forward * _movementSpeed * Time.deltaTime);
         _animator.SetFloat("MoveSpeed", _movementSpeed);
         JumpingAndLanding();
@@ -26,27 +26,6 @@ public class CharactersController : MonoBehaviour
         _jumpInput = false;
         LaneChange();
     }
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Ground"))
-        {
-            _isGrounded = true;
-        }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            _isGrounded = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            _isGrounded = false;
-        }
-    }*/
     private void JumpingAndLanding()
     {
         //bool jumpCooldownOver = (Time.time - jumpTimeStamp) >= minJumpInterval;
@@ -74,14 +53,10 @@ public class CharactersController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            //gameObject.transform.position += new Vector3(-10f,0,0);
-            //gameObject.transform.Translate(new Vector3(-10, 0, 0));
             _rigidBody.MovePosition(gameObject.transform.position + new Vector3(-10, 0, 0));
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            //gameObject.transform.position += new Vector3(10f, 0, 0);
-            // gameObject.transform.Translate(new Vector3(10, 0, 0));
             _rigidBody.MovePosition(gameObject.transform.position + new Vector3(10, 0, 0));
         }
     }
