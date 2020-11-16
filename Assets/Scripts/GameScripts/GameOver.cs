@@ -5,23 +5,31 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] private Animator _gameOverPanel;
-    public bool IsGameOver;
-    void Start()
+    private static GameOver _instance;
+    public static GameOver Instance
     {
-        _gameOverPanel = GameObject.Find("Panel").GetComponent<Animator>();
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        get
         {
-            _gameOverPanel.SetBool("isGameOver", true);
-            IsGameOver = true;
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<GameOver>();
+
+                if (_instance == null)
+                {
+                    GameObject container = new GameObject("GameOver");
+                    _instance = container.AddComponent<GameOver>();
+                }
+            }
+            return _instance;
         }
     }
-    // Update is called once per frame
+    [SerializeField] private Animator _gameOverPanel;
+    public bool IsGameOver;
     void Update()
     {
-        
+        if (IsGameOver)
+        {
+            _gameOverPanel.SetBool("isGameOver", true);
+        }
     }
 }

@@ -5,18 +5,26 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] HighScoreManager highScoreManager;
     [SerializeField] private TextMeshProUGUI _currentScore;
+    [SerializeField] private TextMeshProUGUI _finalScore;
+    [SerializeField] private TextMeshProUGUI _highScore;
     private float _score;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        _score += Time.deltaTime;
-        _currentScore.text = Mathf.RoundToInt(_score).ToString();
+        if (!GameOver.Instance.IsGameOver)
+        {
+            _score += Time.deltaTime;
+            _currentScore.text = Mathf.RoundToInt(_score).ToString();
+        }
+        else
+        {
+            if (highScoreManager.HighScore < Mathf.RoundToInt(_score))
+            {
+                highScoreManager.HighScore = Mathf.RoundToInt(_score);
+            }
+            _finalScore.text = "Score: " + Mathf.RoundToInt(_score);
+            _highScore.text = "High Score: " + highScoreManager.HighScore;
+        }
     }
 }

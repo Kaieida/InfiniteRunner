@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 6500000}
-  - component: {fileID: 4429377837023970202}
+  - component: {fileID: 2124474185890326651}
   m_Layer: 0
   m_Name: RoadBlock_A
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.628296, y: 1.4957559, z: 1.0692539}
   m_Center: {x: 0, y: 0, z: 0.53462696}
---- !u!114 &4429377837023970202
+--- !u!114 &2124474185890326651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,6 +103,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73af62e7ec587cb4a90e6309f70f9423, type: 3}
+  m_Script: {fileID: 11500000, guid: b1ba8d28325a9f344bb9ed460b187b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

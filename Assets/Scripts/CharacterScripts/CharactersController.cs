@@ -13,18 +13,27 @@ public class CharactersController : MonoBehaviour
     private bool _jumpInput;
     void Update()
     {
-        if (!_jumpInput && Input.GetKeyDown("space"))
+        if (!GameOver.Instance.IsGameOver)
         {
-            _jumpInput = true;
+            if (!_jumpInput && Input.GetKeyDown("space"))
+            {
+                _jumpInput = true;
+            }
+            _movementSpeed += Time.deltaTime * 1000;
+            _animator.SetBool("Grounded", _isGrounded);
+            _rigidBody.AddForce(transform.forward * _movementSpeed * Time.deltaTime);
+            _animator.SetFloat("MoveSpeed", _movementSpeed);
+            JumpingAndLanding();
+            _wasGrounded = _isGrounded;
+            _jumpInput = false;
+            LaneChange();
         }
-        _movementSpeed += Time.deltaTime*10;
-        _animator.SetBool("Grounded", _isGrounded);
-        _rigidBody.AddForce(transform.forward * _movementSpeed * Time.deltaTime);
-        _animator.SetFloat("MoveSpeed", _movementSpeed);
-        JumpingAndLanding();
-        _wasGrounded = _isGrounded;
-        _jumpInput = false;
-        LaneChange();
+        else if(GameOver.Instance.IsGameOver)
+        {
+            _movementSpeed = 0;
+            _animator.SetFloat("MoveSpeed", _movementSpeed);
+            Debug.Log("GameOver");
+        }
     }
     private void JumpingAndLanding()
     {
