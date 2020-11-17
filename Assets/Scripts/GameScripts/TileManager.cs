@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private List<Tiles> spawnedTiles;
-    [SerializeField] private List<Tiles> tilePrefabs;
-    [SerializeField] private Transform _player;
+    [SerializeField] private List<Tiles> spawnedTiles = null;
+    [SerializeField] private List<Tiles> tilePrefabs = null;
+    [SerializeField] private Transform _player = null;
     public Tiles FirstTile;
 
     // Start is called before the first frame update

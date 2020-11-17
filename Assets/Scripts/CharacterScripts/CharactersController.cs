@@ -22,7 +22,6 @@ public class CharactersController : MonoBehaviour
             _movementSpeed += Time.deltaTime * 1000;
             _animator.SetBool("Grounded", _isGrounded);
             _rigidBody.AddForce(transform.forward * _movementSpeed * Time.deltaTime);
-            _animator.SetFloat("MoveSpeed", _movementSpeed);
             JumpingAndLanding();
             _wasGrounded = _isGrounded;
             _jumpInput = false;
@@ -31,9 +30,10 @@ public class CharactersController : MonoBehaviour
         else if(GameOver.Instance.IsGameOver)
         {
             _movementSpeed = 0;
-            _animator.SetFloat("MoveSpeed", _movementSpeed);
+            _animator.SetBool("IsGameOver", true);
             Debug.Log("GameOver");
         }
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     private void JumpingAndLanding()
     {
@@ -46,17 +46,16 @@ public class CharactersController : MonoBehaviour
         }*/
         if (_isGrounded && _jumpInput)
         {
-            Debug.Log("jumping");
             _rigidBody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
-        if (!_wasGrounded && _isGrounded)
+        /*if (!_wasGrounded && _isGrounded)
         {
             _animator.SetTrigger("Land");
         }
         if (!_isGrounded && _wasGrounded)
         {
             _animator.SetTrigger("Jump");
-        }
+        }*/
     }
     private void LaneChange()
     {

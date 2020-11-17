@@ -23,7 +23,7 @@ public class GameOver : MonoBehaviour
             return _instance;
         }
     }
-    [SerializeField] private Animator _gameOverPanel;
+    [SerializeField] private Animator _gameOverPanel = null;
     public bool IsGameOver;
     void Update()
     {

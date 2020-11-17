@@ -5,10 +5,10 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] HighScoreManager highScoreManager;
-    [SerializeField] private TextMeshProUGUI _currentScore;
-    [SerializeField] private TextMeshProUGUI _finalScore;
-    [SerializeField] private TextMeshProUGUI _highScore;
+    [SerializeField] HighScoreManager highScoreManager = null;
+    [SerializeField] private TextMeshProUGUI _currentScore = null;
+    [SerializeField] private TextMeshProUGUI _finalScore = null;
+    [SerializeField] private TextMeshProUGUI _highScore = null;
     private float _score;
     void Update()
     {
